@@ -7,6 +7,7 @@ interface Props {
   correctWord: string;
   active: boolean;
   numLetters: number;
+  enterHandler: Function;
 }
 
 interface State {
@@ -21,11 +22,12 @@ export default function BoxRow(props: Props) {
   });
 
   function keyHandler(e: KeyboardEvent) {
-    if (/[a-zA-Z]/.test(e.key) && e.key.length === 1) {
+    if (/[a-zA-Z]/.test(e.key) && e.key.length === 1 && state.guess.length < props.numLetters) {
       const newGuess = state.guess + e.key;
       setState({ ...state, guess: newGuess });
     } else if (e.code === 'Enter') {
       setState({ ...state, readonly: true });
+      props.enterHandler();
     } else if (e.code === 'Backspace') {
       const newGuess = state.guess.substring(0, state.guess.length - 1);
       setState({ ...state, guess: newGuess });

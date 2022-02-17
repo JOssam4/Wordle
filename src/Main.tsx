@@ -43,15 +43,13 @@ export default function Main(props: Props) {
   function getGrid() {
     const ret = [];
     for (let i = 0; i < 6; ++i) {
-      /*
       ret.push(
-        <Row>
-          {getLetterBoxRow()}
-        </Row>
-      );
-       */
-      ret.push(
-        <BoxRow correctWord={state.word} active={i === 0} numLetters={props.numLetters} key={i} />
+        <BoxRow
+          correctWord={state.word}
+          active={state.rowToWriteTo === i}
+          numLetters={props.numLetters}
+          enterHandler={enterHandler}
+          key={i} />
       );
     }
     return ret;
