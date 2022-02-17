@@ -26,8 +26,12 @@ export default function BoxRow(props: Props) {
       const newGuess = state.guess + e.key;
       setState({ ...state, guess: newGuess });
     } else if (e.code === 'Enter') {
-      setState({ ...state, readonly: true });
-      props.enterHandler();
+      if (state.guess.length === props.numLetters) {
+        setState({...state, readonly: true});
+        props.enterHandler();
+      } else {
+        alert('Not enough letters');
+      }
     } else if (e.code === 'Backspace') {
       const newGuess = state.guess.substring(0, state.guess.length - 1);
       setState({ ...state, guess: newGuess });
