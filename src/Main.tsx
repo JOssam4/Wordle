@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import LetterBox from './components/LetterBox';
 import BoxRow from './components/BoxRow';
-import Words from './Words';
+import { answers } from './Words';
 
 interface Props {
   numLetters: number;
@@ -27,7 +27,7 @@ export default function Main(props: Props) {
     rowToWriteTo: 0,
   });
   function selectWord() {
-    return Words[Math.floor(Math.random()*Words.length)];
+    return answers[Math.floor(Math.random()*answers.length)];
   }
 
   function getLetterBoxRow() {
