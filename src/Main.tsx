@@ -51,7 +51,7 @@ export default function Main(props: Props) {
       );
        */
       ret.push(
-        <BoxRow correctWord={state.word} active={i === 0} numLetters={props.numLetters} />
+        <BoxRow correctWord={state.word} active={i === 0} numLetters={props.numLetters} key={i} />
       );
     }
     return ret;
