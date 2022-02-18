@@ -9,7 +9,7 @@
     width: 100px;
     display: flex;
     align-items: center;
-    justify-contenxt: center;
+    justify-content: center;
     font-size: 5rem;
     border: 1px solid black;
     margin: 1px;
@@ -18,17 +18,17 @@
 
 
 .correct {
-    background-color: limegreen;
+    background-color: #6aaa64;
 }
 
 .wrong-spot {
-    background-color: yellow;
+    background-color: #c9b458;
 }
 
 .incorrect {
-    background-color: #282c34;
+    background-color: #787c7e;
 }
 
 .not-submitted {
-    background-color: darkslategrey;
+    background-color: #3a3a3c;
 }
