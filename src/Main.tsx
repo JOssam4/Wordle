@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row } from 'react-bootstrap';
-import LetterBox from './components/LetterBox';
 import BoxRow from './components/BoxRow';
 import { answers } from './Words';
 
@@ -30,16 +28,6 @@ export default function Main(props: Props) {
     return answers[Math.floor(Math.random()*answers.length)];
   }
 
-  function getLetterBoxRow() {
-    const ret = [];
-    for (let i = 0; i < props.numLetters; ++i) {
-      ret.push(
-        <LetterBox correctness={Correctness.NOT_SUBMITTED} />
-      );
-    }
-    return ret;
-  }
-
   function getGrid() {
     const ret = [];
     for (let i = 0; i < 6; ++i) {
@@ -57,17 +45,11 @@ export default function Main(props: Props) {
 
   useEffect(() => {
     const word = selectWord();
-    setState({ ...state, word, });
+    // setState({ ...state, word });
+    setState((s: State) => {
+      return { ...s, word };
+    });
   }, []);
-
-  // handle submit. Check correctness.
-  /*
-  useEffect(() => {
-    if (state.rowToWriteTo > 0) {
-      const lastRow =
-    }
-  }, [state.rowToWriteTo])
-   */
 
   function enterHandler() {
     if (state.rowToWriteTo < props.numGuesses) {
@@ -77,9 +59,7 @@ export default function Main(props: Props) {
 
   return (
     <div id="game-content-wrapper">
-      <Container>
-        {getGrid()}
-      </Container>
+      {getGrid()}
     </div>
   );
 
