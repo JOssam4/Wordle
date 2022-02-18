@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BoxRow from './components/BoxRow';
 import Keyboard from './components/Keyboard';
 import { answers } from './Words';
+import './styles/Main.css';
 
 interface Props {
   numLetters: number;

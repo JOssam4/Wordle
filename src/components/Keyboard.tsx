@@ -1,6 +1,7 @@
 import React from 'react';
 import LetterBox from './LetterBox';
 import { Correctness } from '../Main';
+import '../styles/Keyboard.css';
 
 interface Props {
   correctLetters: Set<string>;
@@ -80,7 +81,7 @@ export default function Keyboard(props: Props) {
       <div className="keyboard-row">
         {getMiddleRow()}
       </div>
-      <div className="keybaord-row">
+      <div className="keyboard-row">
         {getBottomRow()}
       </div>
     </div>
