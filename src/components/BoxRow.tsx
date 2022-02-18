@@ -31,21 +31,6 @@ export default function BoxRow(props: Props) {
       const val = answerLetterCount.get(letter) ?? 0;
       answerLetterCount.set(letter, val + 1);
     }
-    /*
-    return guessArr.map((letter: string, index: number) => {
-      if (letter === answer[index]) {
-        return Correctness.CORRECT;
-      } else {
-        const count = answerLetterCount.get(letter) ?? 0;
-        if (count > 0) {
-          answerLetterCount.set(letter, count - 1);
-          return Correctness.WRONG_SPOT;
-        } else {
-          return Correctness.INCORRECT;
-        }
-      }
-    })
-    */
     const greens = guessArr.map((letter: string, index: number) => {
       if (letter === answer[index]) {
         const count = answerLetterCount.get(letter) ?? 0;
@@ -55,7 +40,8 @@ export default function BoxRow(props: Props) {
         return Correctness.NOT_SUBMITTED;
       }
     });
-    const yellowsAndBlacks = guessArr.map((letter: string, index: number) => {
+    // fill yellows and blacks (wrong spots and incorrects)
+    return guessArr.map((letter: string, index: number) => {
       if (greens[index] === Correctness.CORRECT) {
         return Correctness.CORRECT;
       } else {
@@ -68,7 +54,6 @@ export default function BoxRow(props: Props) {
         }
       }
     });
-    return yellowsAndBlacks;
   }
 
   function keyHandler(e: KeyboardEvent) {
@@ -79,7 +64,7 @@ export default function BoxRow(props: Props) {
       if (state.guess.length === props.numLetters && possible.has(state.guess)) {
         const correctness = checkCorrectness(state.guess, props.correctWord);
         setState({...state, readonly: true, correctness });
-        props.enterHandler();
+        props.enterHandler(state.guess);
       } else if (!possible.has(state.guess)) {
         alert('not in word list');
       } else {

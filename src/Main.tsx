@@ -51,7 +51,11 @@ export default function Main(props: Props) {
     });
   }, []);
 
-  function enterHandler() {
+  function enterHandler(guess: string) {
+    if (guess === state.word) {
+      // Player won.
+      alert('You win!');
+    }
     if (state.rowToWriteTo < props.numGuesses) {
       setState({ ...state, rowToWriteTo: state.rowToWriteTo + 1 });
     }
