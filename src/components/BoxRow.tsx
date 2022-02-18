@@ -58,13 +58,17 @@ export default function BoxRow(props: Props) {
 
   function keyHandler(e: KeyboardEvent) {
     if (/[a-zA-Z]/.test(e.key) && e.key.length === 1 && state.guess.length < props.numLetters) {
-      const newGuess = state.guess + e.key;
+      const newGuess = state.guess + e.key.toLowerCase();
       setState({ ...state, guess: newGuess });
     } else if (e.code === 'Enter') {
       if (state.guess.length === props.numLetters && possible.has(state.guess)) {
         const correctness = checkCorrectness(state.guess, props.correctWord);
-        setState({...state, readonly: true, correctness });
-        props.enterHandler(state.guess);
+        setState({
+          ...state,
+          readonly: true,
+          correctness,
+        });
+        props.enterHandler(state.guess, correctness);
       } else if (!possible.has(state.guess)) {
         alert('not in word list');
       } else {
@@ -92,7 +96,7 @@ export default function BoxRow(props: Props) {
     for (let i = 0; i < props.numLetters; ++i) {
       const letter = state.guess[i] ?? '';
       ret.push(
-        <LetterBox correctness={state.correctness[i]} key={i}>{letter}</LetterBox>
+        <LetterBox correctness={state.correctness[i]} key={i}>{letter.toUpperCase()}</LetterBox>
       );
     }
     return ret;
