@@ -1,6 +1,8 @@
 import React from 'react';
 import LetterBox from './LetterBox';
-import { Correctness } from '../Main';
+import {Correctness} from '../Main';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Keyboard.css';
 
 interface Props {
@@ -54,7 +56,7 @@ export default function Keyboard(props: Props) {
 
   function getBottomRow() {
     const ret = [];
-    const bottomRow = ['Enter'].concat('zxcvbnm'.split('')).concat('Back'); // add enter and backspace to lower row.
+    const bottomRow = ['Enter'].concat('zxcvbnm'.split('')); // add enter to lower row.
     for (const letter of bottomRow) {
       let correctness;
       if (props.correctLetters.has(letter)) {
@@ -70,6 +72,11 @@ export default function Keyboard(props: Props) {
         <LetterBox correctness={correctness} key={letter}>{letter.toUpperCase()}</LetterBox>,
       );
     }
+    ret.push(
+      <LetterBox correctness={Correctness.NOT_SUBMITTED} key="back">
+        <FontAwesomeIcon icon={faDeleteLeft} />
+      </LetterBox>
+    )
     return ret;
   }
 
