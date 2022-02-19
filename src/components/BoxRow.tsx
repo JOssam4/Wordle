@@ -78,7 +78,7 @@ export default function BoxRow(props: Props) {
       const newGuess = state.guess.substring(0, state.guess.length - 1);
       setState({ ...state, guess: newGuess });
     } else {
-      console.log(`e.key: ${e.key}`);
+      console.log(`e.key: ${e.key}, e.code: ${e.code}`);
       console.log(`/a-zA-Z/.test(e.key): ${/[a-zA-Z]/.test(e.key)} e.key.length: ${e.key.length}`);
 
     }

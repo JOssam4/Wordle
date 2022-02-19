@@ -12,6 +12,25 @@ interface Props {
 }
 
 export default function Keyboard(props: Props) {
+  function handleClick(letter: string) {
+    if (letter === 'BACKSPACE') {
+      window.dispatchEvent(new KeyboardEvent('keydown', {
+        key: 'backspace',
+      }));
+    } else if (letter === 'ENTER') {
+      window.dispatchEvent(new KeyboardEvent('keydown', {
+        key: 'Enter',
+        code: 'Enter',
+      }));
+    }
+    else {
+      console.log(`letter: ${letter}`);
+      window.dispatchEvent(new KeyboardEvent('keydown', {
+        key: letter,
+      }));
+    }
+  }
+
   function getTopRow() {
     const ret = [];
     const topRow = 'qwertyuiop'.split('');
@@ -27,7 +46,7 @@ export default function Keyboard(props: Props) {
         correctness = Correctness.NOT_SUBMITTED;
       }
       ret.push(
-        <LetterBox correctness={correctness} key={letter}>{letter.toUpperCase()}</LetterBox>,
+        <LetterBox correctness={correctness} key={letter} onClick={() => handleClick(letter)}>{letter.toUpperCase()}</LetterBox>,
       );
     }
     return ret;
@@ -48,7 +67,7 @@ export default function Keyboard(props: Props) {
         correctness = Correctness.NOT_SUBMITTED;
       }
       ret.push(
-        <LetterBox correctness={correctness} key={letter}>{letter.toUpperCase()}</LetterBox>,
+        <LetterBox correctness={correctness} key={letter} onClick={() => handleClick(letter)}>{letter.toUpperCase()}</LetterBox>,
       );
     }
     return ret;
@@ -56,7 +75,7 @@ export default function Keyboard(props: Props) {
 
   function getBottomRow() {
     const ret = [];
-    const bottomRow = ['Enter'].concat('zxcvbnm'.split('')); // add enter to lower row.
+    const bottomRow = ['ENTER'].concat('zxcvbnm'.split('')); // add enter to lower row.
     for (const letter of bottomRow) {
       let correctness;
       if (props.correctLetters.has(letter)) {
@@ -69,11 +88,11 @@ export default function Keyboard(props: Props) {
         correctness = Correctness.NOT_SUBMITTED;
       }
       ret.push(
-        <LetterBox correctness={correctness} key={letter}>{letter.toUpperCase()}</LetterBox>,
+        <LetterBox correctness={correctness} key={letter} onClick={() => handleClick(letter)}>{letter.toUpperCase()}</LetterBox>,
       );
     }
     ret.push(
-      <LetterBox correctness={Correctness.NOT_SUBMITTED} key="back">
+      <LetterBox correctness={Correctness.NOT_SUBMITTED} key="back" onClick={() => handleClick('BACKSPACE')}>
         <FontAwesomeIcon icon={faDeleteLeft} />
       </LetterBox>
     )
