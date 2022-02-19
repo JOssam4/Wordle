@@ -12,6 +12,7 @@ interface Props {
 interface State {
   word: string;
   rowToWriteTo: number;
+  gameWon: boolean;
   correctLetters: Set<string>; // values in this set will not be removed.
   wrongSpotLetters: Set<string>; // note that values can be removed from this set and placed into correctLetters
   incorrectLetters: Set<string>; // values in this set will not be removed.
@@ -28,6 +29,7 @@ export default function Main(props: Props) {
   const [state, setState] = useState<State>({
     word: '',
     rowToWriteTo: 0,
+    gameWon: false,
     correctLetters: new Set<string>(),
     wrongSpotLetters: new Set<string>(),
     incorrectLetters: new Set<string>(),
@@ -57,6 +59,12 @@ export default function Main(props: Props) {
       return { ...s, word };
     });
   }, []);
+
+  useEffect(() => {
+    if (state.gameWon) {
+      alert('You win!');
+    }
+  }, [state.gameWon])
 
   /**
    *
@@ -93,13 +101,15 @@ export default function Main(props: Props) {
     updateCorrectness(guess, correctness);
     if (guess === state.word) {
       // Player won.
-      alert('You win!');
-    }
-    if (state.rowToWriteTo < props.numGuesses) {
+      // alert('You win!');
+      setState({ ...state, gameWon: true, rowToWriteTo: props.numGuesses - 1 });
+    } else if (state.rowToWriteTo < props.numGuesses - 1) {
       setState({
         ...state,
         rowToWriteTo: state.rowToWriteTo + 1,
       });
+    } else {
+      alert(state.word);
     }
   }
 
