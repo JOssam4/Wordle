@@ -53,7 +53,6 @@ export default function Main(props: Props) {
 
   useEffect(() => {
     const word = selectWord();
-    // setState({ ...state, word });
     setState((s: State) => {
       return { ...s, word };
     });
