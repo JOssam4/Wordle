@@ -118,6 +118,7 @@ export default function Main(props: Props) {
       <div id="game-content-wrapper">
         {getGrid()}
       </div>
+      <br />
       <Keyboard correctLetters={state.correctLetters} wrongSpotLetters={state.wrongSpotLetters} incorrectLetters={state.incorrectLetters} />
     </div>
   );

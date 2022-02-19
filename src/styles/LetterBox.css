@@ -5,9 +5,9 @@
 
 
 .letter-box {
-    height: 100px;
+    height: 10vh;
     width: fit-content;
-    min-width: 100px;
+    min-width: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
