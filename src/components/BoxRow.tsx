@@ -96,7 +96,13 @@ export default function BoxRow(props: Props) {
     for (let i = 0; i < props.numLetters; ++i) {
       const letter = state.guess[i] ?? '';
       ret.push(
-        <LetterBox correctness={state.correctness[i]} key={i}>{letter.toUpperCase()}</LetterBox>
+        <LetterBox
+          correctness={state.correctness[i]}
+          key={i}
+          keyboard={false}
+        >
+          {letter.toUpperCase()}
+        </LetterBox>
       );
     }
     return ret;

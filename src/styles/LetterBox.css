@@ -36,3 +36,11 @@
 .not-submitted {
     background-color: #3a3a3c;
 }
+
+.keyboard-box-unused {
+    background-color: #787c7e;
+}
+
+.keyboard-box-incorrect {
+    background-color: #3a3a3c;
+}

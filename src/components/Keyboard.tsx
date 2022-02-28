@@ -46,7 +46,14 @@ export default function Keyboard(props: Props) {
         correctness = Correctness.NOT_SUBMITTED;
       }
       ret.push(
-        <LetterBox correctness={correctness} key={letter} onClick={() => handleClick(letter)}>{letter.toUpperCase()}</LetterBox>,
+        <LetterBox
+          correctness={correctness}
+          key={letter}
+          onClick={() => handleClick(letter)}
+          keyboard
+        >
+          {letter.toUpperCase()}
+        </LetterBox>,
       );
     }
     return ret;
@@ -67,7 +74,14 @@ export default function Keyboard(props: Props) {
         correctness = Correctness.NOT_SUBMITTED;
       }
       ret.push(
-        <LetterBox correctness={correctness} key={letter} onClick={() => handleClick(letter)}>{letter.toUpperCase()}</LetterBox>,
+        <LetterBox
+          correctness={correctness}
+          key={letter}
+          onClick={() => handleClick(letter)}
+          keyboard={true}
+        >
+          {letter.toUpperCase()}
+        </LetterBox>,
       );
     }
     return ret;
@@ -88,11 +102,23 @@ export default function Keyboard(props: Props) {
         correctness = Correctness.NOT_SUBMITTED;
       }
       ret.push(
-        <LetterBox correctness={correctness} key={letter} onClick={() => handleClick(letter)}>{letter.toUpperCase()}</LetterBox>,
+        <LetterBox
+          correctness={correctness}
+          key={letter}
+          onClick={() => handleClick(letter)}
+          keyboard={true}
+        >
+          {letter.toUpperCase()}
+        </LetterBox>,
       );
     }
     ret.push(
-      <LetterBox correctness={Correctness.NOT_SUBMITTED} key="back" onClick={() => handleClick('BACKSPACE')}>
+      <LetterBox
+        correctness={Correctness.NOT_SUBMITTED}
+        key="back"
+        onClick={() => handleClick('BACKSPACE')}
+        keyboard={true}
+      >
         <FontAwesomeIcon icon={faDeleteLeft} />
       </LetterBox>
     )
